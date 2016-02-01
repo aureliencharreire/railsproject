@@ -1,0 +1,10 @@
+<ul>
+  <% @users.each do |user| %>
+    <li><%= user.first_name %></li>
+    <li><%= user.last_name %></li>
+    <li><%= user.adress %></li>
+    <li><%= user.city %></li>
+    <li><%= user.post_code %></li>
+    <li><%= user.email %></li>
+  <% end %>
+</ul>
