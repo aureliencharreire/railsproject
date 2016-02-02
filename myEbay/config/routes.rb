@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :products
+    resources :products
+    get 'products/user/:user_id', to: 'products#users_products', :as => :user_products
+
     devise_for :users, :controllers => { registrations: 'users/registrations' }
     resources :users, only: [:index]
 
@@ -8,8 +10,6 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#homepage'
-
-
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

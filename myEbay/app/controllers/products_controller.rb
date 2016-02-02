@@ -7,6 +7,11 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
+  # GET /products/user/1
+  def users_products
+      @products = Product.where(user_id: params[:user_id])
+  end
+
   # GET /products/1
   # GET /products/1.json
   def show
