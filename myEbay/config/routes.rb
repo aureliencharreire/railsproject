@@ -3,7 +3,10 @@ Rails.application.routes.draw do
     get 'products/user/:user_id', to: 'products#users_products', :as => :user_products
 
     devise_for :users, :controllers => { registrations: 'users/registrations' }
-    resources :users, only: [:index]
+    resources :users, only: [:index, :edit_user, :update_user]
+    get 'users/edit/:id', to: 'users#edit_user', :as => :edit_user
+    put 'users/edit/:id', to: 'users#update_user', :as => :update_user
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
