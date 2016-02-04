@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reviews
     resources :products
     get 'products/user/:user_id', to: 'products#users_products', :as => :user_products
 

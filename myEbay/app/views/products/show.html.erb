@@ -1,19 +1,32 @@
-<%= image_tag "/assets/images/products/#{@product.id}/#{@product.image_filename}" if @product.image_filename? %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @product.title %>
-</p>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4">
+                <%= image_tag "/assets/images/products/#{@product.id}/#{@product.image_filename}" if @product.image_filename? %>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><strong>Title:</strong></td>
+                                <td><%= @product.title %></td>
+                            </tr>
+                            <td><strong>Description:</strong></td>
 
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
+                            <td>
+                                <%= @product.description %>
+                            </td>
+                            <tr>
+                                <td><strong>Price:</strong></td>
+                                <td><%= @product.price %></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
