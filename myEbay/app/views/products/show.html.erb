@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<%= image_tag "/assets/images/products/#{@product.id}/#{@product.image_filename}" if @product.image_filename? %>
 
 <p>
   <strong>Title:</strong>
