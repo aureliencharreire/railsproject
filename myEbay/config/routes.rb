@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  resources :reviews
-    resources :products
+    
+    resources :products do
+        resources :reviews, except: [:show, :index]
+    end
+
     get 'products/user/:user_id', to: 'products#users_products', :as => :user_products
 
     devise_for :users, :controllers => { registrations: 'users/registrations' }

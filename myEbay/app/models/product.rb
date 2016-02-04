@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
     belongs_to :user
-
+    has_many :reviews
     attr_accessor :image
 
     after_save :save_product_image, if: :image
