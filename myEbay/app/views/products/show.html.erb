@@ -33,9 +33,9 @@
                 <%= link_to "Leave a comment", new_product_review_path(@product) %>
                 <% else %>
                     <div class="rev">
-                    <%= @reviews.each do | r | %>
-                        <p><%= r.comment %></p>
-                        <p><%= r.rating %></p>
+                    <% @reviews.each do | r , i | %>
+                    <p><%= r.comment %></p>
+                    <p><%= r.rating %></p>
                     <% end %>
                     </div>
                 <% end %>

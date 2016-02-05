@@ -3,14 +3,6 @@ class ReviewsController < ApplicationController
   before_action :set_product
   before_action :authenticate_user!
 
-
-  # GET /reviews
-  # GET /reviews.json
-  def index
-    @reviews = Review.all
-  end
-
-
   # GET /reviews/new
   def new
     @review = Review.new
