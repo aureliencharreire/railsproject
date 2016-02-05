@@ -6,7 +6,13 @@
                 <div class="col-md-4">
                     <%= image_tag "/assets/images/products/#{@product.id}/#{@product.image_filename}" if @product.image_filename? %>
                 </div>
+
+                <div class="star-rating" data-score= <%= @avg_review %> ></div>
+                <em> <%= "#{@reviews.length} reviews" %> </em>
+                <p><%= @avg_review %></p>
+
                 <div class="table-responsive">
+
                     <table class="table">
                         <tbody>
                             <tr>
@@ -32,12 +38,12 @@
                 <h2>Be the first to add a comment ! </h2>
                 <%= link_to "Leave a comment", new_product_review_path(@product) %>
                 <% else %>
-                    <div class="rev">
+                <div class="rev">
                     <% @reviews.each do | r , i | %>
+                    <div class="star-rating" data-score= <%= r.rating %> ></div>
                     <p><%= r.comment %></p>
-                    <p><%= r.rating %></p>
                     <% end %>
-                    </div>
+                </div>
                 <% end %>
             </div>
         </div>
@@ -46,3 +52,13 @@
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
+
+<script>
+    $('.star-rating').raty({
+        path: '/assets/',
+        readOnly: true,
+        score: function(){
+            return $(this).attr('data-score');
+        }
+    });
+</script>

@@ -18,6 +18,17 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
       @reviews = Review.where(product_id: @product.id).order("created_at DESC")
+
+      puts "review:"
+      puts @reviews
+
+      if @reviews.blank?
+          @avg_review = 0
+      else
+          @avg_review = @reviews.average(:rating).round(2)
+      end
+      puts "avg review:"
+      puts @avg_review
   end
 
   # GET /products/new
