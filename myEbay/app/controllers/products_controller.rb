@@ -2,6 +2,15 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :index]
 
+  def search
+      if params[:search].present?
+          @products = Product.search(params[:search])
+      else
+          @products = Product.all
+      end
+  end
+
+
 
   # GET /products
   # GET /products.json
@@ -18,7 +27,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
       @reviews = Review.where(product_id: @product.id).order("created_at DESC")
-      
+
       if @reviews.blank?
           @avg_review = 0
       else

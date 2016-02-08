@@ -4,8 +4,8 @@ source 'https://rubygems.org'
 gem 'devise', '3.4.1' # USER with devise
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
-gem 'carrierwave'
-#Attacher des iamges de contenu
+gem 'carrierwave' #Attacher des iamges de contenu (ne sert pas dans ce cas)
+gem 'searchkick', '~> 1.2' #permet de faire des recherches dans notre BDD
 
 # =============================================================================
 
