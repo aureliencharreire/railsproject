@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :categories
     resources :products do
         collection do
             get 'search'
@@ -8,6 +9,8 @@ Rails.application.routes.draw do
     end
 
     get 'products/user/:user_id', to: 'products#users_products', :as => :user_products
+    get 'products/category/:category_id', to: 'products#categories_products', :as => :categories_products
+
 
     devise_for :users, :controllers => { registrations: 'users/registrations' }
     resources :users, only: [:index, :edit_user, :update_user]

@@ -1,6 +1,8 @@
 class Product < ActiveRecord::Base
     searchkick
     belongs_to :user
+    belongs_to :category
+
     has_many :reviews
     attr_accessor :image
 

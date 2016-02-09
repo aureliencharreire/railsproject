@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Products</h1>
+
+<h1><%= @products.first.category.name %> products category</h1>
+
 <div class="table-responsive">
 <table class="table">
   <thead>
@@ -9,11 +11,10 @@
       <th>Description</th>
       <th>Price</th>
       <th>User</th>
-      <th>Categorie</th>
-
       <th colspan="4"></th>
     </tr>
   </thead>
+
   <tbody>
     <% @products.each do |product| %>
       <tr>
@@ -24,16 +25,11 @@
             <%= product.user.first_name %>
             <%= link_to 'All products', user_products_path(product.user_id), class: "btn btn-primary btn-sm"%>
         </td>
-        <td>
-            <%= product.category.name %>
-            <%= link_to 'All products form this category', categories_products_path(product.category_id), class: "btn btn-primary btn-sm"%>
-        </td>
         <td><%= link_to 'Product details', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product), class: "glyphicon glyphicon-edit" %></td>
+        <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+     <% end %>
   </tbody>
 </table>
 </div>
-<%= link_to 'New Product', new_product_path %>

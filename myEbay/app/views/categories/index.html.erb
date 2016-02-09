@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Categories</h1>
+<div class="table-responsive">
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th colspan="3"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @categories.each do |category| %>
+        <tr>
+            <td><%= category.name %></td>
+            <td><%= category.description %></td>
+            <td><%= link_to 'Add a subcategory', new_category_path(parent_id: category.id) %></td>
+            <td><%= link_to 'Show', category %></td>
+            <td><%= link_to 'Edit', edit_category_path(category) %></td>
+            <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% if !category.parent.nil? %>
+                <tr>
+                    <td>catégorie mère : <%= category.parent.name %></td>
+                    <td><%= link_to 'Add a subcategory', new_category_path(parent_id: category.id) %></td>
+                </tr>
+            <% end %>
+    </tr>
+    <% end %>
+</tbody>
+</table>
+</div>
+
+<br>
+
+<%= link_to 'New Category', new_category_path %>
+
+<br>

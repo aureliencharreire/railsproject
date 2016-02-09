@@ -23,6 +23,11 @@ class ProductsController < ApplicationController
       @products = Product.where(user_id: params[:user_id])
   end
 
+  # GET /products/user/1
+  def categories_products
+      @products = Product.where(category_id: params[:category_id])
+  end
+
   # GET /products/1
   # GET /products/1.json
   def show
@@ -38,6 +43,7 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
+    @categories = Category.all
   end
 
   # GET /products/1/edit
@@ -86,6 +92,7 @@ class ProductsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
@@ -93,6 +100,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:title, :description, :price, :user_id, :image)
+      params.require(:product).permit(:title, :description, :price, :user_id, :image, :category_id)
     end
 end

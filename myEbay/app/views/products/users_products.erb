@@ -1,9 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 
-<h1><% @products.first.user.first_name %></h1>
+<h1><%= @products.first.user.first_name %> products </h1>
 
-<table>
+<div class="table-responsive">
+<table class="table">
   <thead>
     <tr>
       <th>Title</th>
@@ -26,3 +27,4 @@
      <% end %>
   </tbody>
 </table>
+</div>
