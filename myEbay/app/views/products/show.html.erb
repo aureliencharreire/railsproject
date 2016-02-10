@@ -2,17 +2,18 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-4">
-                <div class="col-md-4">
+            <div class="col-md-6">
+                <div class="col-md-6">
                     <%= image_tag "/assets/images/products/#{@product.id}/#{@product.image_filename}" if @product.image_filename? %>
                 </div>
 
                 <div class="star-rating" data-score= <%= @avg_review %> ></div>
                 <em> <%= "#{@reviews.length} reviews" %> </em>
                 <p><%= @avg_review %></p>
+            </div>
+            <div class="col-md-5 offset-md1">
 
                 <div class="table-responsive">
-
                     <table class="table">
                         <tbody>
                             <tr>
@@ -25,19 +26,25 @@
                             </tr>
                             <tr>
                                 <td><strong>Price:</strong></td>
-                                <td><%= @product.price %></td>
+                                <td><%= @product.price %> €</td>
                             </tr>
                         </tbody>
                     </table>
-                    <%= link_to "Leave a comment", new_product_review_path(@product) %>
-
+                    <% if @bid.blank? %>
+                    <h3> Enchère de départ : <%= @product.start_bid %>€
+                        <%= link_to "Encherir", new_product_bid_path(@product), class: "btn btn-primary btn-sm" %>
+                    </h3>
+                    <% else %>
+                    <h3> Enchère la plus haute : <%= @bid.bid %>€
+                        <%= link_to "Encherir", edit_product_bid_path(@product, @bid), class: "btn btn-primary btn-sm" %>
+                    </h3>
+                    <% end %>
                 </div>
-            </div>
-            <div class="col-md-7 offset-md1">
                 <% if @reviews.blank? %>
-                <h2>Be the first to add a comment ! </h2>
-                <%= link_to "Leave a comment", new_product_review_path(@product) %>
+                <h3>Be the first to comment !
+                </h3>
                 <% else %>
+                <br>
                 <div class="rev">
                     <% @reviews.each do | r , i | %>
                     <div class="star-rating" data-score= <%= r.rating %> ></div>
@@ -45,20 +52,19 @@
                     <% end %>
                 </div>
                 <% end %>
+                <%= link_to "Leave a comment", new_product_review_path(@product), class: "btn btn-primary btn-sm" %>
             </div>
         </div>
     </div>
 </div>
-
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
-
 <script>
-    $('.star-rating').raty({
-        path: '/assets/',
-        readOnly: true,
-        score: function(){
-            return $(this).attr('data-score');
-        }
-    });
+$('.star-rating').raty({
+    path: '/assets/',
+    readOnly: true,
+    score: function(){
+        return $(this).attr('data-score');
+    }
+});
 </script>

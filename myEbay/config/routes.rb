@@ -6,6 +6,7 @@ Rails.application.routes.draw do
             get 'search'
         end
         resources :reviews, except: [:show, :index]
+        resources :bids
     end
 
     get 'products/user/:user_id', to: 'products#users_products', :as => :user_products

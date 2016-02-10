@@ -21,7 +21,7 @@
     </div>
     <div class="field">
         <%= f.label :price %><br>
-        <%= f.text_field :price %>
+        <%= f.number_field :price %>
     </div>
     <div class="field">
         <%= f.label :image %><br>
@@ -30,6 +30,10 @@
     <div class="field">
         <%= f.label :category %><br>
         <%= f.collection_select :category_id, Category.all, :id, :name %>
+    </div>
+    <div class="field">
+        <%= f.label :start_bid %><br>
+        <%= f.number_field :start_bid %>
     </div>
     <div class="actions">
         <%= f.submit %>
